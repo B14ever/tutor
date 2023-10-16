@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 // use cors midlware to allow server request from other origin
 app.use(
         cors({
-            origin: ["http://localhost:5173", "https://652d49199577861778e611c7--earnest-selkie-b1ed70.netlify.app"],
+            origin: ["http://localhost:5173", "https://earnest-selkie-b1ed70.netlify.app/"],
             methods: ["GET", "POST"],
             credentials: true,
         })
