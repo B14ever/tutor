@@ -85,8 +85,8 @@ const Login = () =>  {
         {errorMsg && <Typography sx={{color:"#DA0037"}}>{errorMsg}</Typography>}
         <Box sx={{display:'flex',flexDirection:'column',gap:'1rem'}}>
           <Box sx={{width:'100%',display:'flex'}}> 
-            <Link href="/forgetPassword" variant="body2" color='#16db82'>Forget password?</Link>
-            <Link sx={{marginLeft:'auto',color:'#16db82'}} href="/signup" variant="body2">Create account</Link>
+            <Link  onClick={()=>navigate('/forgetPassword')} variant="body2" color='#16db82'>Forget password?</Link>
+            <Link sx={{marginLeft:'auto',color:'#16db82'}} onClick={()=>navigate('/signup')} variant="body2">Create account</Link>
           </Box>
           <Button type="submit" variant="contained" size='large' sx={{ mt: 1, mb: 2,width:'50%',alignSelf:'center',textTransform:'none', backgroundColor:'#16db82',
                         color:"#fff",
