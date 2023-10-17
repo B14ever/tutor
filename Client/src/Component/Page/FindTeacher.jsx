@@ -108,7 +108,7 @@ const FindTeacher = () => {
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
              <Box sx={{ borderRadius:'10px', boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',padding:'1em',}}>
               <Box sx={{width:'100%',display:'flex',justifyContent:'center'}}>
-              <Photos src={`../${item.profilePhoto}`}/>
+              <Photos src={item.profilePhoto}/>
               </Box>
               <Box mt={2} >
                 <Typography variant='h5' sx={{textAlign:'center',

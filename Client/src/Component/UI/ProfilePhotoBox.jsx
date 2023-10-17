@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Avatar,Box,Button,Dialog,DialogActions,DialogTitle,Divider} from '@mui/material'
 import { useAthuContext } from '../Context/AthuContext'
 import axios from '../api/api'
@@ -10,12 +10,21 @@ const ProfilePhotoBox = () => {
     const handleClickOpen = () => {
         setOpen(true);
       };
+
     const handleClose = () => {
         setData('')
         setOpen(false);
-      };
+      }; 
+     const handleChange = (e) =>{
+     const reader = new FileReader();
+     reader.readAsDataURL(e.target.files[0])
+     reader.onloadend = () =>{
+     setData({profilePhoto: reader.result})
+     }
+     }
      const changePhoto = async (e)=>{
       e.preventDefault();
+    
        try{
         const responce = await axios.post('/AccountProfile/changePhoto',{data,Email})
         localStorage.setItem('USER_DATA',JSON.stringify(responce.data.user))
@@ -26,11 +35,12 @@ const ProfilePhotoBox = () => {
          console.log(err)
          }
       }
+
   return (
      <React.Fragment>
     <Box sx={{position:'relative'}}> 
     <img src="../coverPhoto.png" style={{ width: '100%', height: 'auto',borderTopLeftRadius:'6px',borderTopRightRadius:'6px',objectFit:'contain'}} />
-        <Avatar src={`../${user.user.profilePhoto}`}
+        <Avatar src={user.user.profilePhoto}
          sx={{
               position: 'absolute',
               top: {sm:'calc(100% - 85px)',xs:'calc(100% - 50px)'},
@@ -44,7 +54,7 @@ const ProfilePhotoBox = () => {
       <Divider></Divider>
       <Box component="form" onSubmit={changePhoto} >
         <Box mt={1} mb={1} sx={{display:'flex',gap:'.5rem',flexDirection:'column',alignItems:'center'}}>
-            <Avatar src={`../${data.profilePhoto}`} 
+            <Avatar  src={ data.profilePhoto || user.user.profilePhoto  }
                sx={{ width:190, height:190, borderRadius: '50%'}} />
             <Button sx={{textTransform:'none'}} variant='outlined' type='submit' >save</Button>
         </Box>
@@ -53,7 +63,7 @@ const ProfilePhotoBox = () => {
           <Button sx={{textTransform:'none'}} onClick={handleClose}>Cancel</Button>
           <Button sx={{textTransform:'none'}} variant='contained' component="label">
             {data.profilePhoto || user.user.profilePhoto ?"change photo": "Upload Photo"}
-            <input hidden accept="image/*" multiple type="file" onChange={(e)=>setData({profilePhoto:e.target.files[0].name})}/>
+            <input hidden accept="image/*" multiple type="file" onChange={handleChange}/>
          </Button>
         </DialogActions>
         </Box>
