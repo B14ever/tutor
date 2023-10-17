@@ -4,6 +4,9 @@ const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json({ limit: '100mb' }));
 
 // use cors midlware to allow server request from other origin
 app.use(

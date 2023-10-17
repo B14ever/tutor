@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Avatar,Box,Button,Dialog,DialogActions,DialogTitle,Divider} from '@mui/material'
+import { Avatar,Box,Button,Dialog,DialogActions,DialogTitle,Divider, Typography} from '@mui/material'
 import { useAthuContext } from '../Context/AthuContext'
 import axios from '../api/api'
 const ProfilePhotoBox = () => {
@@ -7,12 +7,14 @@ const ProfilePhotoBox = () => {
     const Email = user.user.Email
     const [open, setOpen] = useState(false);
     const [data,setData] = useState({profilePhoto:''})
+    const [error,setError] = useState("")
     const handleClickOpen = () => {
         setOpen(true);
       };
 
     const handleClose = () => {
         setData('')
+        setError('')
         setOpen(false);
       }; 
      const handleChange = (e) =>{
@@ -32,7 +34,7 @@ const ProfilePhotoBox = () => {
         setTimeout(handleClose,500)
       }
          catch(err){
-         console.log(err)
+          setError('large image size change')
          }
       }
 
@@ -56,12 +58,29 @@ const ProfilePhotoBox = () => {
         <Box mt={1} mb={1} sx={{display:'flex',gap:'.5rem',flexDirection:'column',alignItems:'center'}}>
             <Avatar  src={ data.profilePhoto || user.user.profilePhoto  }
                sx={{ width:190, height:190, borderRadius: '50%'}} />
-            <Button sx={{textTransform:'none'}} variant='outlined' type='submit' >save</Button>
+             <Typography sx={{color:'red',fontWeight:'300',letterSpacing:'1px'}}>{error?error:""}</Typography>
+            <Button sx={{textTransform:'none',
+            borderColor:'none',
+            backgroundColor:'#16db82',
+             color:"#fff",
+            ':hover':{
+            backgroundColor:'#16db82'
+         } }}  type='submit' >save</Button>
         </Box>
         <Divider></Divider>
-        <DialogActions >
-          <Button sx={{textTransform:'none'}} onClick={handleClose}>Cancel</Button>
-          <Button sx={{textTransform:'none'}} variant='contained' component="label">
+        <DialogActions sx={{display:'flex',gap:'.5rem'}} >
+          <Button sx={{textTransform:'none',
+            backgroundColor:'#16db82',
+             color:"#fff",
+            ':hover':{
+            backgroundColor:'#16db82'
+         } }} onClick={handleClose}>Cancel</Button>
+          <Button sx={{textTransform:'none',
+            backgroundColor:'#16db82',
+             color:"#fff",
+            ':hover':{
+            backgroundColor:'#16db82'
+         } }} variant='contained' component="label">
             {data.profilePhoto || user.user.profilePhoto ?"change photo": "Upload Photo"}
             <input hidden accept="image/*" multiple type="file" onChange={handleChange}/>
          </Button>
