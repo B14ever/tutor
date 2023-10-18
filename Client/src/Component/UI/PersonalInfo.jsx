@@ -131,13 +131,13 @@ const PersonalInfo = () => {
         <Grid container spacing={1.5} sx={{marginTop:'.5em'}} >
           <Grid item xs={12} md={6}>
           <FormControl fullWidth>
-                <TextField onChange={handleChange} name='Password' defaultValue={user.user?.Password} fullWidth label='Password' color="secondary"/>
+                <TextField onChange={handleChange} name='Password' defaultValue={user.user?.Password} fullWidth label='Password'type="password"  color="secondary"/>
                 <FormHelperText sx={{color:'red'}}>{Errors.Password? Errors.Password : ''}</FormHelperText> 
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
           <FormControl fullWidth>
-                <TextField onChange={handleChange} name='confirmPassword' defaultValue={user.user?.confirmPassword} fullWidth label='Confirm Password' color="secondary"/>
+                <TextField onChange={handleChange} name='confirmPassword' defaultValue={user.user?.confirmPassword} type="password" fullWidth label='Confirm Password' color="secondary"/>
                 <FormHelperText sx={{color:'red'}}>{Errors.confirmPassword?Errors.confirmPassword:''}</FormHelperText>
             </FormControl>
           </Grid>

@@ -51,7 +51,7 @@ const DeleteAccount = () => {
    <React.Fragment>
      <Divider  sx={{marginTop:'5px',}}>Delete account</Divider>
      <Box component='form' onSubmit={handleDelete} sx={{display:'flex',flexDirection:'column',gap:'.5rem',alignItems:'center'}}mt={2}ml={2}mr={2}>
-      <TextField sx={{width:{xs:'100%',md:'50%'}} } type='password' label="Password" onChange={(e)=>setData({Password:e.target.value})}/>
+      <TextField sx={{width:{xs:'100%',md:'50%'}} } type='password' label="Password"  onChange={(e)=>setData({Password:e.target.value})}/>
       <FormHelperText sx={{color:'red',width:{xs:'100%',md:'50%'}}}>{Errors.Password?Errors.Password:''}</FormHelperText>
       <FormControlLabel sx={{width:{xs:'100%',md:'50%'}} }
                   control={<Checkbox value="allowExtraEmails" color="primary" onClick={()=>setCheckbox(!checkbox)} />}

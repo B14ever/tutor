@@ -65,11 +65,11 @@ const RecoverPassword = () => {
         <Typography component="h1" variant="h5">Reset password</Typography>
     <Box component="form" onSubmit={handleSubmit}  noValidate sx={{ mt: 1 }}>
        <FormControl fullWidth error={!!Errors.Password}>
-          <TextField color="secondary" onChange={handleChange}  margin="normal" required fullWidth id="password" label="New password" name="Password"/>
+          <TextField color="secondary" onChange={handleChange}  margin="normal" required fullWidth type="password" id="password" label="New password" name="Password"/>
           <FormHelperText >{Errors.Password?Errors.Password:''}</FormHelperText>
        </FormControl>
        <FormControl fullWidth error={!!Errors.confirmPassword}>
-          <TextField color="secondary" onChange={handleChange} margin="normal" required fullWidth id="confirmPassword" label="Confirm password" name="confirmPassword"/>
+          <TextField color="secondary" onChange={handleChange} margin="normal" required fullWidth type="password" id="confirmPassword" label="Confirm password" name="confirmPassword"/>
           <FormHelperText >{Errors.confirmPassword?Errors.confirmPassword:''}</FormHelperText>
        </FormControl>
         {errorMsg && <Typography sx={{color:"#DA0037"}}>{errorMsg}</Typography>}
